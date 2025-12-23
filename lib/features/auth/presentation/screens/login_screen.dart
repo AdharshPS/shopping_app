@@ -16,15 +16,37 @@ class LoginScreen extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               return Container(
-                height: constraints.maxHeight * .4,
+                height: constraints.maxHeight * .35,
                 width: constraints.maxWidth,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(18),
                 ),
+                padding: EdgeInsets.all(16),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const Icon(
+                      Icons.shopping_cart_outlined,
+                      size: 64,
+                      color: Colors.green,
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Welcome Back',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Sign in to continue shopping',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black54, fontSize: 14),
+                    ),
+                    const SizedBox(height: 32),
                     _buildButton(
                       constraints: constraints,
                       signIn: () async {
@@ -58,25 +80,31 @@ class LoginScreen extends StatelessWidget {
     required BoxConstraints constraints,
     Function()? signIn,
   }) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: InkWell(
-        onTap: signIn,
-        child: Container(
-          height: 80,
-          width: constraints.maxWidth,
-          decoration: BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            'Login with Google',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-            ),
+    return InkWell(
+      onTap: signIn,
+      child: Container(
+        width: constraints.maxWidth,
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.center,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.login, color: Colors.white),
+              SizedBox(width: 12),
+              Text(
+                'Login with Google',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
         ),
       ),

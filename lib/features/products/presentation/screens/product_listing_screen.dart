@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shopping_app/core/enums/product_categories.dart';
 import 'package:shopping_app/features/auth/presentation/provider/auth_provider.dart';
 import 'package:shopping_app/features/auth/presentation/screens/login_screen.dart';
+import 'package:shopping_app/features/cart/presentation/provider/cart_provider.dart';
 import 'package:shopping_app/features/products/domain/entities/products_entity.dart';
 import 'package:shopping_app/features/products/presentation/provider/products_list_provider.dart';
 import 'package:shopping_app/features/products/presentation/screens/product_details_screen.dart';
@@ -83,7 +84,10 @@ class _ProductListingScreenState extends State<ProductListingScreen> {
         ),
         IconButton(
           onPressed: () async {
-            await context.read<AuthProvider>().logout();
+            Future.wait([
+              context.read<AuthProvider>().logout(),
+              context.read<CartProvider>().deleteAllCart(),
+            ]);
             if (!mounted) return;
             Navigator.pushAndRemoveUntil(
               context,
