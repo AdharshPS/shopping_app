@@ -114,11 +114,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         InkWell(
           onTap: alreadyInCarts
-              ? () => Navigator.pushReplacement(
+              ? () => Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BottomNavigationScreen(index: 1),
                   ),
+                  (route) => false,
                 )
               : addToCart,
           borderRadius: BorderRadius.circular(12),

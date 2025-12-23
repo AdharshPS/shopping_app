@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_app/features/cart/presentation/provider/cart_provider.dart';
 import 'package:shopping_app/features/cart/presentation/screens/cart_screen.dart';
 import 'package:shopping_app/features/dashboard/presentation/provider/nav_provider.dart';
 import 'package:shopping_app/features/products/presentation/screens/product_listing_screen.dart';
@@ -47,10 +48,18 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           onTap: (value) => nav.changeIndex(value, context),
           backgroundColor: Colors.grey[300],
           fixedColor: Colors.green,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.store), label: "Products"),
+          items: [
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.store),
+              label: "Products",
+            ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
+              icon: context.read<CartProvider>().cartItems.isEmpty
+                  ? Icon(Icons.shopping_cart)
+                  : Badge.count(
+                      count: context.watch<CartProvider>().cartItems.length,
+                      child: Icon(Icons.shopping_cart),
+                    ),
               label: "Cart",
             ),
           ],

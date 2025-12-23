@@ -20,8 +20,14 @@ class CartDs {
     return List.unmodifiable(cartBox.values.toList().reversed.toList());
   }
 
-  Future<void> deleteFromCart(int key) async {
-    await cartBox.delete(key);
+  Future<void> deleteFromCart(int productId) async {
+    for (final key in cartBox.keys) {
+      final item = cartBox.get(key);
+      if (int.parse(item!.product.id!) == productId) {
+        await cartBox.delete(key);
+        return;
+      }
+    }
   }
 
   Future<void> increment(int productId) async {

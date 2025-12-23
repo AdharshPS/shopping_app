@@ -36,14 +36,15 @@ class _CartScreenState extends State<CartScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Total Amount: ${consumer.totalAmount}',
+                      'Total Amount: \u20B9 ${consumer.totalAmount}',
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: 10),
                 _buildButton(
                   buy: () async {
                     _buildDialog();

@@ -64,8 +64,8 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteFromCart(int key) async {
-    await _deleteFromCart(key);
+  Future<void> deleteFromCart(int productId) async {
+    await _deleteFromCart(productId);
     final items = await _getFromCart();
     cartItems = List.from(items);
     notifyListeners();

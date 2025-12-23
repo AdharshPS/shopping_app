@@ -22,8 +22,8 @@ class CartRepositoryImpl implements CartRepository {
   }
 
   @override
-  Future<void> deleteFromCart(int key) async {
-    await local.deleteFromCart(key);
+  Future<void> deleteFromCart(int productId) async {
+    await local.deleteFromCart(productId);
   }
 
   @override
